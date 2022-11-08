@@ -7,10 +7,14 @@
   "private": true,
   "dependencies": {
     "@sap/cds": "^6",
-    "express": "^4"
+    "express": "^4",
+    "hdb": "^0.19.0",
+    "@sap/xssec": "^3",
+    "passport": "^0"
   },
   "devDependencies": {
     "@sap/ux-specification": "^1.102.11",
+    "cds-launchpad-plugin": "^1.0.7",
     "sqlite3": "^5.0.4"
   },
   "scripts": {
@@ -19,7 +23,7 @@
     "watch-mitigations": "cds watch --open mitigations/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "engines": {
-    "node": "^16.15"
+    "node": "^16"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -49,5 +53,20 @@
   "sapux": [
     "app/risks",
     "app/mitigations"
-  ]
+  ],
+  "cds": {
+    "requires": {
+      "[production]": {
+        "db": {
+          "kind": "hana-cloud"
+        },
+        "auth": {
+          "kind": "xsuaa"
+        }
+      },
+      "db": {
+        "kind": "sql"
+      }
+    }
+  }
 }
